@@ -93,16 +93,16 @@ def sample_pagerank(corpus, damping_factor, n):
     """
     visits = {page_name: 0 for page_name in corpus}
 
-    # First page choice is picked at random:
+    
     curr_page = random.choice(list(visits))
     visits[curr_page] += 1
 
-    # For remaining n-1 samples, pick the page based on the transistion model:
+    
     for i in range(0, n-1):
 
         trans_model = transition_model(corpus, curr_page, damping_factor)
 
-        # Pick next page based on the transition model probabilities:
+        
         rand_val = random.random()
         total_prob = 0
 
@@ -114,8 +114,7 @@ def sample_pagerank(corpus, damping_factor, n):
 
         visits[curr_page] += 1
 
-    # Normalise visits using sample number:
-    page_ranks = {page_name: (visit_num/n) for page_name, visit_num in visits.items()}
+        page_ranks = {page_name: (visit_num/n) for page_name, visit_num in visits.items()}
 
     print('Sum of sample page ranks: ', round(sum(page_ranks.values()), 4))
 
@@ -133,7 +132,7 @@ def iterate_pagerank(corpus, damping_factor):
     """
     # Calculate some constants from the corpus for further use:
     num_pages = len(corpus)
-    init_rank = 1 / num_pages
+    init_rank = 1 / num_pages #prob uniforme
     random_choice_prob = (1 - damping_factor) / len(corpus)
     iterations = 0
 
